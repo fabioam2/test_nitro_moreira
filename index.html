@@ -37,11 +37,17 @@
 
     .subtitle {
       font-size: clamp(1rem, 3vw, 1.5rem);
-      color: #555;
+      color: #14C76E;
       margin-top: 1rem;
       font-weight: 300;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    
+    .timestamp {
+      font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+      color: #426DFF;
+      margin-top: 0.5rem;
+      font-weight: 400;
     }
 
     @keyframes gradient {
@@ -109,9 +115,26 @@
 
   <div class="container">
     <h1>Hello Moreira! 10</h1>
-    <p class="subtitle">21/05/2026 às 13:27:18</p>
-    <p class="subtitle">21/05/2026 às 13:27:18</p>
+    <p class="timestamp" id="timestamp"></p>
     <p class="subtitle"><span class="pulse"></span>powered by nitro</p>
   </div>
+
+  <script>
+    function updateTimestamp() {
+      const now = new Date();
+      const day = String(now.getDate()).padStart(2, '0');
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const year = now.getFullYear();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      
+      const timestamp = `${day}/${month}/${year} às ${hours}:${minutes}:${seconds}`;
+      document.getElementById('timestamp').textContent = timestamp;
+    }
+    
+    updateTimestamp();
+    setInterval(updateTimestamp, 1000);
+  </script>
 </body>
 </html>
